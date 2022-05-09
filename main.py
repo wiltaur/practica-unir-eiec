@@ -36,14 +36,23 @@ if __name__ == "__main__":
     file_path = os.path.join(".", filename)
     if os.path.isfile(file_path):
         word_list = []
+        #se agrega una variable que va a contar la cantidad de items que se encontraron en el fichero
+        #se inicia en 0 porque inicialmente esta vacía
+        word_count_ini = 0
+        word_count_fin = 0
         with open(file_path, "r") as file:
             for line in file:
                 word_list.append(line.strip())
+        word_count_ini = len(word_list)
     else:
         print(f"El fichero {filename} no existe")
         word_list = ["ravenclaw", "gryffindor", "slytherin", "hufflepuff"]
 
     if remove_duplicates:
         word_list = remove_duplicates_from_list(word_list)
-
+        word_count_fin = len(word_list)
+    
+    print(f"El fichero {filename} tenía {word_count_ini} palabras")
+    print(f"Se encontraron {word_count_ini} - {word_count_fin} palabras duplicadas")
     print(sort_list(word_list))
+    
